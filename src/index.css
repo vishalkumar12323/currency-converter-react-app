@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+
+    #root {
+        width: 100% !important;
+        height: 100vh !important;
+        background-image: linear-gradient(#000000d7, #000000dc), url('/images/currency.jpg');
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+    }
+}
