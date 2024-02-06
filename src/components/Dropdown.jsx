@@ -1,11 +1,9 @@
-import { useState } from "react";
-
 const Dropdown = () => {
   return (
     <>
-      <div className="dropdown grid sm:grid-cols-3 gap-y-2">
-        <div className="left flex justify-center gap-x-4 items-center p-2 mt-4 border">
-          <div className="flag">
+      <div className="grid sm:grid-cols-3 gap-y-2">
+        <div className="flex justify-center gap-x-4 items-center p-2 mt-4 border">
+          <div>
             <img src="/images/india.webp" alt="india" className="w-[100px]" />
           </div>
           <select
@@ -28,11 +26,11 @@ const Dropdown = () => {
             className="w-[2rem] text-white"
           />
         </div>
-        <div className="right flex justify-center items-center gap-x-4 p-2 sm:mt-3 border">
-          <div className="flag">
+        <div className="flex justify-center items-center gap-x-4 p-2 sm:mt-3 border">
+          <div>
             <img src="/images/us.jpg" alt="india" className="w-[100px]" />
           </div>
-          <select name="" id="" className=" bg-transparent cursor-pointer">
+          <select className=" bg-transparent cursor-pointer">
             <option value="AUS" className="text-black">
               AUS
             </option>
