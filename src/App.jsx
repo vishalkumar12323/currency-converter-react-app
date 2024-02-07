@@ -1,8 +1,12 @@
 import { Inputs } from "./components/Inputs";
 import { Dropdown } from "./components/Dropdown";
 import { Result } from "./components/Result";
+import { useState } from "react";
 
 function App() {
+  const [exchangeRate, setExchangeRate] = useState();
+  const [amount, setAmount] = useState();
+
   return (
     <>
       <div className="app p-2 text-white text-2xl min-w-[50vw] mx-auto">

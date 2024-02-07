@@ -1,4 +1,9 @@
+import { useEffect, useRef } from "react";
+import { countries } from "../Services/countries";
+
 const Dropdown = () => {
+  const optionRef = useRef();
+  // useEffect(() => {}, []);
   return (
     <>
       <div className="grid sm:grid-cols-3 gap-y-2">
@@ -7,16 +12,22 @@ const Dropdown = () => {
             <img src="/images/india.webp" alt="india" className="w-[100px]" />
           </div>
           <select
-            name="select"
+            name="from"
             id="select"
             className="bg-transparent cursor-pointer "
           >
-            <option value="INR" className="text-black">
-              INR
-            </option>
-            <option value="USD" className="text-black">
-              USD
-            </option>
+            {countries.map((element, index) => {
+              return (
+                <option
+                  ref={optionRef}
+                  key={index}
+                  value={element.country}
+                  className="text-black origin-bottom"
+                >
+                  {element.code}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div className="flex justify-center items-center my-4">
@@ -30,13 +41,18 @@ const Dropdown = () => {
           <div>
             <img src="/images/us.jpg" alt="india" className="w-[100px]" />
           </div>
-          <select className=" bg-transparent cursor-pointer">
-            <option value="AUS" className="text-black">
-              AUS
-            </option>
-            <option value="INR" className="text-black">
-              INR
-            </option>
+          <select name="to" className=" bg-transparent cursor-pointer">
+            {countries.map((element, index) => {
+              return (
+                <option
+                  key={index}
+                  value={element.country}
+                  className="text-black origin-bottom"
+                >
+                  {element.code}
+                </option>
+              );
+            })}
           </select>
         </div>
       </div>
