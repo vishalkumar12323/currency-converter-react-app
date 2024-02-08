@@ -1,12 +1,21 @@
 import { getFlagFromCode } from "../Services/index";
 import { countries, fromIndex, toIndex } from "../Services/countries";
+import { useRef, useState } from "react";
 
-const Dropdown = ({
-  flagCodeFrom,
-  flagCodeTo,
-  setFlagCodeFrom,
-  setFlagCodeTo,
-}) => {
+const Dropdown = ({ setFCode, setTCode }) => {
+  const [flagCodeFrom, setFlagCodeFrom] = useState(countries[toIndex].country);
+  const [flagCodeTo, setFlagCodeTo] = useState(countries[fromIndex].country);
+
+  const handleChangeFrom = (e) => {
+    setFlagCodeFrom(e.target.value);
+    const findFCode = countries.find((item) => item.country === e.target.value);
+    setFCode(findFCode.code);
+  };
+  const handleChangeTo = (e) => {
+    setFlagCodeTo(e.target.value);
+    const findTCode = countries.find((item) => item.country === e.target.value);
+    setFCode(findTCode.code);
+  };
   return (
     <>
       <div className="grid sm:grid-cols-3 gap-y-2 text-xl">
@@ -26,7 +35,7 @@ const Dropdown = ({
               id="select"
               className="bg-transparent cursor-pointer border outline-none"
               defaultValue={countries[toIndex].country}
-              onChange={(e) => setFlagCodeFrom(e.target.value)}
+              onChange={handleChangeFrom}
             >
               {countries.map((element, index) => {
                 return (
@@ -34,6 +43,7 @@ const Dropdown = ({
                     key={index}
                     value={element.country}
                     className="text-black"
+                    onClick={(e) => console.log(e.currentTarget.value)}
                   >
                     {element.code}
                   </option>
@@ -64,7 +74,7 @@ const Dropdown = ({
               name="to"
               className=" bg-transparent cursor-pointer border outline-none"
               defaultValue={countries[fromIndex].country}
-              onChange={(e) => setFlagCodeTo(e.target.value)}
+              onChange={handleChangeTo}
             >
               {countries.map((element, index) => {
                 return (
