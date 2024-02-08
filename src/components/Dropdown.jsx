@@ -1,14 +1,12 @@
-import { useEffect, useRef, useState } from "react";
 import { getFlagFromCode } from "../Services/index";
-import { countries } from "../Services/countries";
+import { countries, fromIndex, toIndex } from "../Services/countries";
 
-const Dropdown = () => {
-  const [flagCodeFrom, setFlagCodeFrom] = useState(countries[66].country);
-  const [flagCodeTo, setFlagCodeTo] = useState(countries[149].country);
-
-  // useEffect(() => {
-  //   console.log(selectRefFrom);
-  // }, []);
+const Dropdown = ({
+  flagCodeFrom,
+  flagCodeTo,
+  setFlagCodeFrom,
+  setFlagCodeTo,
+}) => {
   return (
     <>
       <div className="grid sm:grid-cols-3 gap-y-2 text-xl">
@@ -19,7 +17,7 @@ const Dropdown = () => {
             <div>
               <img
                 src={getFlagFromCode(flagCodeFrom)}
-                alt="india"
+                alt="flag img"
                 className="w-[100px]"
               />
             </div>
@@ -27,7 +25,7 @@ const Dropdown = () => {
               name="from"
               id="select"
               className="bg-transparent cursor-pointer border outline-none"
-              defaultValue={countries[66].country}
+              defaultValue={countries[toIndex].country}
               onChange={(e) => setFlagCodeFrom(e.target.value)}
             >
               {countries.map((element, index) => {
@@ -35,7 +33,7 @@ const Dropdown = () => {
                   <option
                     key={index}
                     value={element.country}
-                    className="text-black origin-bottom"
+                    className="text-black"
                   >
                     {element.code}
                   </option>
@@ -58,14 +56,14 @@ const Dropdown = () => {
             <div>
               <img
                 src={getFlagFromCode(flagCodeTo)}
-                alt="india"
+                alt="flag img"
                 className="w-[100px]"
               />
             </div>
             <select
               name="to"
               className=" bg-transparent cursor-pointer border outline-none"
-              defaultValue={countries[149].country}
+              defaultValue={countries[fromIndex].country}
               onChange={(e) => setFlagCodeTo(e.target.value)}
             >
               {countries.map((element, index) => {

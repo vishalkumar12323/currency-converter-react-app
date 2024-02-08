@@ -636,4 +636,7 @@ const countries = [
     code: "ZWD",
   },
 ];
-export { countries };
+
+const fromIndex = countries.findIndex((item) => item.country === "IN");
+const toIndex = countries.findIndex((item) => item.country === "US");
+export { countries, fromIndex, toIndex };
