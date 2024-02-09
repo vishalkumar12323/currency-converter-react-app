@@ -2,19 +2,20 @@ import { getFlagFromCode } from "../Services/index";
 import { countries, fromIndex, toIndex } from "../Services/countries";
 import { useRef, useState } from "react";
 
-const Dropdown = ({ setFCode, setTCode }) => {
-  const [flagCodeFrom, setFlagCodeFrom] = useState(countries[toIndex].country);
-  const [flagCodeTo, setFlagCodeTo] = useState(countries[fromIndex].country);
+const Dropdown = ({
+  flagCodeFrom,
+  flagCodeTo,
+  setFlagCodeFrom,
+  setFlagCodeTo,
+}) => {
+  // const [flagCodeFrom, setFlagCodeFrom] = useState(countries[toIndex].country);
+  // const [flagCodeTo, setFlagCodeTo] = useState(countries[fromIndex].country);
 
   const handleChangeFrom = (e) => {
     setFlagCodeFrom(e.target.value);
-    const findFCode = countries.find((item) => item.country === e.target.value);
-    setFCode(findFCode.code);
   };
   const handleChangeTo = (e) => {
     setFlagCodeTo(e.target.value);
-    const findTCode = countries.find((item) => item.country === e.target.value);
-    setFCode(findTCode.code);
   };
   return (
     <>

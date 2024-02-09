@@ -6,34 +6,42 @@ import { getExchangeRate } from "./Services";
 import { countries, fromIndex, toIndex } from "./Services/countries";
 
 function App() {
+  const [flagCodeFrom, setFlagCodeFrom] = useState(countries[toIndex].country);
+  const [flagCodeTo, setFlagCodeTo] = useState(countries[fromIndex].country);
   const [fCode, setFCode] = useState("inr");
   const [tCode, setTCode] = useState("usd");
   const [exchangeRate, setExchangeRate] = useState();
+  const [value, setValue] = useState("");
   const [amount, setAmount] = useState("");
-  const [finalValue, setFinalValue] = useState();
 
-  const handleClick = () => {
-    if (!amount) return null;
+  const handleClick = async () => {
+    // if (!amount) return null;
+    setAmount(value);
     console.log(amount);
+    const data = await getExchangeRate(fCode, tCode);
+    let rate = data[tCode];
+    let finalRate = rate * amount;
+    setExchangeRate(finalRate);
   };
   useEffect(() => {
-    getExchangeRate(fCode.toLowerCase(), tCode.toLowerCase())
-      .then((rate) => {
-        setExchangeRate(rate);
-        console.log(rate);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
+    const findFCode = countries.find((i) => i.country === flagCodeFrom);
+    const findTCode = countries.find((i) => i.country === flagCodeTo);
+    setFCode(findFCode.code.toLowerCase());
+    setTCode(findTCode.code.toLowerCase());
+  }, [flagCodeFrom, flagCodeTo]);
 
   return (
     <>
       <div className="app p-2 text-white text-2xl min-w-[50vw] mx-auto">
         <h1 className="text-3xl font-semibold uppercase">Currency Converter</h1>
-        <Inputs amount={amount} setAmount={setAmount} />
-        <Dropdown setFCode={setFCode} setTCode={setTCode} />
-        <Result finalValue={finalValue} />
+        <Inputs value={value} setValue={setValue} />
+        <Dropdown
+          flagCodeFrom={flagCodeFrom}
+          flagCodeTo={flagCodeTo}
+          setFlagCodeFrom={setFlagCodeFrom}
+          setFlagCodeTo={setFlagCodeTo}
+        />
+        <Result exchangeRate={exchangeRate} />
         <button
           className="w-full py-3 mt-4 rounded-sm bg-blue-500 hover:bg-blue-600 transition-colors"
           onClick={handleClick}
