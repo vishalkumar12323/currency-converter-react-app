@@ -1,9 +1,16 @@
-const Result = ({ exchangeRate }) => {
-  console.log(exchangeRate);
+const Result = ({ output, countryCode, value }) => {
   return (
     <>
       <div className="p-2 mt-5 text-center text-3xl">
-        <p>1USD = 83.97INR</p>
+        {output ? (
+          <p>
+            {value} {countryCode.fCode.toUpperCase()} ={" "}
+            {Math.round(output * value) + " "}
+            {countryCode.tCode.toUpperCase()}
+          </p>
+        ) : (
+          <p>1 USD = {output} INR</p>
+        )}
       </div>
     </>
   );

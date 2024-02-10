@@ -1,9 +1,7 @@
-// usd/inr.json
 const BASE_URL =
   "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/";
 
 const getExchangeRate = async (fCode, tCode) => {
-  console.log(fCode, tCode);
   const Rate = await fetch(`${BASE_URL}${fCode}/${tCode}.json`);
   return Rate.json();
 };

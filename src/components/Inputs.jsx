@@ -1,13 +1,15 @@
-import { useState } from "react";
-
-const Inputs = ({ value, setValue }) => {
+const Inputs = ({ inputValue, setInputValue }) => {
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setInputValue(value);
+  };
   return (
     <>
       <div className="input">
         <h2 className="py-4">Enter Amount</h2>
         <input
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          value={inputValue}
+          onChange={handleChange}
           type="number"
           className="py-3 pl-1 outline-none rounded-sm w-full border bg-transparent"
         />
